@@ -1,41 +1,21 @@
 import * as React from 'react';
+import { AbilityScore } from './ability-score.model';
 
 export class Character extends React.Component<{}, void> {
   private abilityScores: Array<any>;
+  private requiredScores : Array<any> = [
+    'Strength',
+    'Dexterity',
+    'Constitution',
+    'Intelligence',
+    'Wisdom',
+    'Charisma'
+  ];
 
   componentWillMount() {
-    this.abilityScores = [
-      {
-        name: 'Strength',
-        score: 13,
-        modifier: 1,
-      },
-      {
-        name: 'Dexterity',
-        score: 13,
-        modifier: 1,
-      },
-      {
-        name: 'Constituion',
-        score: 13,
-        modifier: 1,
-      },
-      {
-        name: 'Intelligence',
-        score: 13,
-        modifier: 1,
-      },
-      {
-        name: 'Wisdom',
-        score: 13,
-        modifier: 1,
-      },
-      {
-        name: 'Charisma',
-        score: 13,
-        modifier: 1,
-      }
-    ];
+    this.abilityScores = this.requiredScores.map(abilityScore => {
+      return new AbilityScore(abilityScore);
+    });
   }
 
   render() {
