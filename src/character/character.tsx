@@ -39,7 +39,6 @@ export class Character extends React.Component<{}, void> {
   }
 
   render() {
-
     const statList = this.abilityScores.map(ability => {
       return  <tr>
                 <td>{ability.name}</td>
@@ -47,8 +46,6 @@ export class Character extends React.Component<{}, void> {
                 <td>{ability.modifier}</td>
               </tr>;
     });
-
-    
 
     return (
       <section>
