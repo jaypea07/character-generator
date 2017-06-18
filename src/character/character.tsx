@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { CONSTANTS } from '../core/constants';
 import { AbilityScore } from './ability-score.model';
+import { Utilities } from '../core/utilities';
 import './character.css';
 
 export interface CharacterProps {
@@ -46,14 +47,7 @@ export class Character extends React.Component<CharacterProps, CharacterState> {
    * Returns a random item from the supplied list.
    */
   private randomize(list: Array<string>): string {
-    return list[this.getRandomNumber(0, list.length - 1)];
-  }
-
-  /**
-   * Provides a random integer between the supplied min and max.
-   */
-  private getRandomNumber(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min) + min);
+    return list[Utilities.getRandomNumber(0, list.length - 1)];
   }
 
 }

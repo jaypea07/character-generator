@@ -2,6 +2,7 @@ import * as React from 'react';
 import { CONSTANTS } from '../core/constants';
 import { Character } from '../character/character';
 import { AbilityScore } from '../character/ability-score.model';
+import { Utilities } from './utilities';
 import './app.css';
 
 export interface AppState {
@@ -68,7 +69,7 @@ class App extends React.Component<{}, AppState> {
     let stat: number = 0;
 
     for (let i = 0; i < 4; i++) {
-      rolls.push(this.getRandomNumber(1, 6));
+      rolls.push(Utilities.getRandomNumber(1, 6));
     }
 
     rolls.sort().shift();
@@ -77,13 +78,6 @@ class App extends React.Component<{}, AppState> {
     });
 
     return stat;
-  }
-
-  /**
-   * Provides a random integer between the supplied min and max.
-   */
-  private getRandomNumber(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min) + min);
   }
 
   /**
