@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { CONSTANTS } from '../core/constants';
 import { AbilityScore } from './ability-score.model';
+import './character.css';
 
 export interface CharacterProps {
   stats: Array<AbilityScore>;
@@ -35,5 +36,5 @@ export class Character extends React.Component<CharacterProps, void> {
   private getRandomNumber(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min) + min);
   }
-  
+
 }
