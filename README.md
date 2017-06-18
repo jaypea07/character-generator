@@ -4,7 +4,7 @@ This web-app generates a new 5th edition Dungeons & Dragons character. The race 
 ## Getting Started
 If you have cloned the repo and wish to run the project locally, type the following in a command line:
 1. `yarn`: This installs all of the project dependencies.
-2. `yarn start`: This spins up a local node server on [http://localhost:3000/](http://localhost:3000/) and automatically opens it in the browsesr.
+2. `yarn start`: This spins up a local node server on [http://localhost:3000/](http://localhost:3000/) and automatically opens it in the browser.
 
 ## Possible Races
 * Dwarf
