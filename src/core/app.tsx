@@ -4,14 +4,16 @@ import { Character } from '../character/character';
 import { AbilityScore } from '../character/ability-score.model';
 import './app.css';
 
-class App extends React.Component<{}, null> {
-  private abilityScores: Array<AbilityScore>;
+export interface AppState {
+  abilityScores: Array<AbilityScore>;
+}
+
+class App extends React.Component<{}, AppState> {
+  // private abilityScores: Array<AbilityScore>;
   
   componentWillMount() {
-    this.abilityScores = this.rollStats(CONSTANTS.REQUIRED_STATS);
-    while (this.isNotHeroic(this.abilityScores)) {
-      this.abilityScores = this.rollStats(CONSTANTS.REQUIRED_STATS);
-    }
+    // this.abilityScores = this.rollStats(CONSTANTS.REQUIRED_STATS);
+    this.createNewCharacter();
   }
 
   render() {
@@ -19,16 +21,32 @@ class App extends React.Component<{}, null> {
       <section>
         <h1>Dungeons &amp; Dragons Character Generator</h1>
         <h2>I'm going to roll a...</h2>
-        <Character stats={this.rollStats(CONSTANTS.REQUIRED_STATS)} />
-        <button>That's dumb. Roll again!</button>
+        <Character stats={this.state.abilityScores} />
+        <button onClick={this.createNewCharacter.bind(this)}>That's dumb. Roll again!</button>
       </section>
     );
   }
 
+  private createNewCharacter(): void {
+    this.setState({
+      abilityScores: this.rollStats(CONSTANTS.REQUIRED_STATS)
+    });
+  }
+
   private rollStats(requiredStats: Array<string>): Array<AbilityScore> {
-    return requiredStats.map(abilityScore => {
+    const stats = requiredStats.map(abilityScore => {
       return new AbilityScore(abilityScore, this.rollSingleStat());
     });
+
+    return this.validateStats(stats);
+  }
+
+  private validateStats(stats: Array<AbilityScore>): Array<AbilityScore> {
+    while (this.isNotHeroic(stats)) {
+      stats = this.rollStats(CONSTANTS.REQUIRED_STATS);
+    }
+
+    return stats;
   }
 
   // roll 4, drop the lowest
