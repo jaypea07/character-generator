@@ -35,14 +35,23 @@ export class Character extends React.Component<CharacterProps, CharacterState> {
     return list;
   }
 
+  /**
+   * Formats modifier with either parenthesis or an em-dash.
+   */
   private buildModifier(modifier: string): JSX.Element {
     return modifier === '0' ? (<td>&mdash;</td>) : (<td>({modifier})</td>);
   }
 
+  /**
+   * Returns a random item from the supplied list.
+   */
   private randomize(list: Array<string>): string {
     return list[this.getRandomNumber(0, list.length - 1)];
   }
 
+  /**
+   * Provides a random integer between the supplied min and max.
+   */
   private getRandomNumber(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min) + min);
   }
