@@ -2,8 +2,8 @@ import * as React from 'react';
 import { AbilityScore } from './ability-score.model';
 
 export class Character extends React.Component<{}, void> {
-  private abilityScores: Array<any>;
-  private requiredScores : Array<any> = [
+  private abilityScores: Array<AbilityScore>;
+  private requiredScores: Array<string> = [
     'Strength',
     'Dexterity',
     'Constitution',
@@ -18,18 +18,20 @@ export class Character extends React.Component<{}, void> {
 
   render() {
     const statList = this.abilityScores.map(ability => {
-      return  <tr>
-                <td>{ability.name}</td>
-                <td>{ability.score}</td>
-                <td>({ability.modifier})</td>
-              </tr>;
+      return (
+        <tr key={ability.name}>
+          <td>{ability.name}</td>
+          <td>{ability.score}</td>
+          <td>({ability.modifier})</td>
+        </tr>
+      );
     });
 
     return (
       <section>
         <h2>Dwarven Wizard</h2>
 
-        <table>{statList}</table>
+        <table><tbody>{statList}</tbody></table>
       </section>
     );
   }
@@ -40,12 +42,12 @@ export class Character extends React.Component<{}, void> {
     });
   }
 
-  //roll 4, drop the lowest
+  // roll 4, drop the lowest
   private rollSingleStat(): number {
     let rolls: Array<number> = [];
     let stat = 0;
 
-    for(let i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i++) {
       rolls.push(this.rollD6());
     }
 
