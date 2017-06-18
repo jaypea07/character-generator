@@ -9,10 +9,8 @@ export interface AppState {
 }
 
 class App extends React.Component<{}, AppState> {
-  // private abilityScores: Array<AbilityScore>;
   
   componentWillMount() {
-    // this.abilityScores = this.rollStats(CONSTANTS.REQUIRED_STATS);
     this.createNewCharacter();
   }
 
