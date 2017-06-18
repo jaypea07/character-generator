@@ -36,11 +36,28 @@ export class Character extends React.Component<{}, void> {
 
   private rollStats(requiredStats: Array<string>): Array<AbilityScore> {
     return requiredStats.map(abilityScore => {
-      return new AbilityScore(abilityScore, this.rollD20());
+      return new AbilityScore(abilityScore, this.rollSingleStat());
     });
   }
 
-  private rollD20() {
-    return Math.floor(Math.random() * 19 + 1);
+  //roll 4, drop the lowest
+  private rollSingleStat(): number {
+    let rolls: Array<number> = [];
+    let stat = 0;
+
+    for(let i = 0; i < 4; i++) {
+      rolls.push(this.rollD6());
+    }
+
+    rolls.sort().shift();
+    rolls.map(roll => {
+      stat += roll;
+    });
+
+    return stat;
+  }
+
+  private rollD6(): number {
+    return Math.floor(Math.random() * 6 + 1);
   }
 }
