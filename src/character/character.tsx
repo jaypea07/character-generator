@@ -13,7 +13,7 @@ export class Character extends React.Component<CharacterProps, void> {
     const statList = this.props.stats.map(stat => {
       return (
         <tr key={stat.name}>
-          <td>{stat.name}</td>
+          <td className="ability-name">{stat.name}</td>
           <td>{stat.score}</td>
           <td>({stat.modifier})</td>
         </tr>
@@ -22,7 +22,7 @@ export class Character extends React.Component<CharacterProps, void> {
 
     return (
       <section>
-        <h2>{this.randomize(CONSTANTS.RACES)} {this.randomize(CONSTANTS.CLASSES)}</h2>
+        <h2 className="name">{this.randomize(CONSTANTS.RACES)} {this.randomize(CONSTANTS.CLASSES)}!</h2>
 
         <table><tbody>{statList}</tbody></table>
       </section>

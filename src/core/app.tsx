@@ -16,7 +16,7 @@ class App extends React.Component<{}, AppState> {
 
   render() {
     return (
-      <section>
+      <section className="container">
         <h1>Dungeons &amp; Dragons Character Generator</h1>
         <h2>I'm going to roll a...</h2>
         <Character stats={this.state.abilityScores} />
