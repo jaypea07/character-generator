@@ -14,6 +14,10 @@ export class Character extends React.Component<{}, void> {
 
   componentWillMount() {
     this.abilityScores = this.rollStats(this.requiredScores);
+
+    while (this.isNotHeroic(this.abilityScores)) {
+      this.abilityScores = this.rollStats(this.requiredScores);
+    }
   }
 
   render() {
@@ -61,5 +65,25 @@ export class Character extends React.Component<{}, void> {
 
   private rollD6(): number {
     return Math.floor(Math.random() * 6 + 1);
+  }
+
+  // 2 scores 14 or higher
+  // total score is 70 or higher
+  private isNotHeroic(abilityScores: Array<AbilityScore>): boolean {
+
+    let statsAboveThreshold: number = 0;
+    let combinedTotal: number = 0;
+
+    abilityScores.map(stat => {
+      combinedTotal += stat.score;
+      if (stat.score > 13) {
+        ++statsAboveThreshold;
+      }
+    });
+
+    if (combinedTotal >= 70 && statsAboveThreshold > 1) {
+      return false;
+    }
+    return true;
   }
 }

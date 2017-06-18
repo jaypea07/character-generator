@@ -1,6 +1,6 @@
 export class AbilityScore {
   name: string;
-  score: number | undefined;
+  score: number;
   modifier: string | undefined;
 
   constructor(name: string, score?: number) {
