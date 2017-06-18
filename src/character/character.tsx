@@ -7,10 +7,23 @@ export interface CharacterProps {
   stats: Array<AbilityScore>;
 }
 
-export class Character extends React.Component<CharacterProps, void> {
+export interface CharacterState {}
 
-  render() {
-    const statList = this.props.stats.map(stat => {
+export class Character extends React.Component<CharacterProps, CharacterState> {
+
+  render(): JSX.Element {
+    return (
+      <section>
+        <h2 className="name">{this.randomize(CONSTANTS.RACES)} {this.randomize(CONSTANTS.CLASSES)}!</h2>
+        <table>
+          <tbody>{this.createStatList()}</tbody>
+        </table>
+      </section>
+    );
+  }
+
+  private createStatList(): JSX.Element[] {
+    const list = this.props.stats.map(stat => {
       return (
         <tr key={stat.name}>
           <td className="ability-name">{stat.name}</td>
@@ -19,14 +32,7 @@ export class Character extends React.Component<CharacterProps, void> {
         </tr>
       );
     });
-
-    return (
-      <section>
-        <h2 className="name">{this.randomize(CONSTANTS.RACES)} {this.randomize(CONSTANTS.CLASSES)}!</h2>
-
-        <table><tbody>{statList}</tbody></table>
-      </section>
-    );
+    return list;
   }
 
   private randomize(list: Array<string>): string {
