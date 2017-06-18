@@ -26,11 +26,19 @@ export class Character extends React.Component<{}, void> {
 
     return (
       <section>
-        <h2>Dwarven Wizard</h2>
+        <h2>{this.randomize(CONSTANTS.RACES)} {this.randomize(CONSTANTS.CLASSES)}</h2>
 
         <table><tbody>{statList}</tbody></table>
       </section>
     );
+  }
+
+  private randomize(list: Array<string>): string {
+    return list[this.getRandomNumber(0, list.length - 1)];
+  }
+
+  private getRandomNumber(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min) + min);
   }
 
   private rollStats(requiredStats: Array<string>): Array<AbilityScore> {
@@ -57,7 +65,7 @@ export class Character extends React.Component<{}, void> {
   }
 
   private rollD6(): number {
-    return Math.floor(Math.random() * 6 + 1);
+    return this.getRandomNumber(1, 6);
   }
 
   // 2 scores 14 or higher
