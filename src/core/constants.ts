@@ -26,7 +26,7 @@ export const CONSTANTS = {
   ],
   RACES: [
     'Dwarven',
-    'Elfish',
+    'Elvish',
     'Halfling',
     'Human',
     'Dragonborn',
