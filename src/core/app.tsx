@@ -37,7 +37,7 @@ class App extends React.Component<{}, AppState> {
   }
 
   private rollStats(requiredStats: Array<string>): Array<AbilityScore> {
-    const stats = requiredStats.map(abilityScore => {
+    const stats: Array<AbilityScore> = requiredStats.map(abilityScore => {
       return new AbilityScore(abilityScore, this.rollSingleStat());
     });
 
@@ -55,7 +55,7 @@ class App extends React.Component<{}, AppState> {
   // roll 4, drop the lowest
   private rollSingleStat(): number {
     let rolls: Array<number> = [];
-    let stat = 0;
+    let stat: number = 0;
 
     for (let i = 0; i < 4; i++) {
       rolls.push(this.rollD6());

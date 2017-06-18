@@ -10,8 +10,8 @@ export class AbilityScore {
   }
 
   private formatModifier(score: number): string {
-    let modifier = Math.floor((score - 10) / 2);
-    let formattedString;
+    let modifier: number = Math.floor((score - 10) / 2);
+    let formattedString: string;
     
     if (modifier <= 0) {
       formattedString = modifier.toString();
