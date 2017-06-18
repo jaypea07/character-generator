@@ -15,5 +15,6 @@ deploy:
   region: us-east-2
   local-dir: build
   acl: public_read
+  skip_cleanup: true
   on:
     repo: jaypea07/character-generator
