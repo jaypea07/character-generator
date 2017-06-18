@@ -16,23 +16,27 @@ export class Character extends React.Component<CharacterProps, CharacterState> {
       <section>
         <h2 className="name">{this.randomize(CONSTANTS.RACES)} {this.randomize(CONSTANTS.CLASSES)}!</h2>
         <table>
-          <tbody>{this.createStatList()}</tbody>
+          <tbody>{this.buildStatList()}</tbody>
         </table>
       </section>
     );
   }
 
-  private createStatList(): JSX.Element[] {
+  private buildStatList(): JSX.Element[] {
     const list = this.props.stats.map(stat => {
       return (
         <tr key={stat.name}>
           <td className="ability-name">{stat.name}</td>
           <td>{stat.score}</td>
-          <td>({stat.modifier})</td>
+          {this.buildModifier(stat.modifier)}
         </tr>
       );
     });
     return list;
+  }
+
+  private buildModifier(modifier: string): JSX.Element {
+    return modifier === '0' ? (<td>&mdash;</td>) : (<td>({modifier})</td>);
   }
 
   private randomize(list: Array<string>): string {
