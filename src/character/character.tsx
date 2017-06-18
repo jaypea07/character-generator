@@ -1,22 +1,15 @@
 import * as React from 'react';
+import { CONSTANTS } from '../constants';
 import { AbilityScore } from './ability-score.model';
 
 export class Character extends React.Component<{}, void> {
   private abilityScores: Array<AbilityScore>;
-  private requiredScores: Array<string> = [
-    'Strength',
-    'Dexterity',
-    'Constitution',
-    'Intelligence',
-    'Wisdom',
-    'Charisma'
-  ];
 
   componentWillMount() {
-    this.abilityScores = this.rollStats(this.requiredScores);
+    this.abilityScores = this.rollStats(CONSTANTS.REQUIRED_STATS);
 
     while (this.isNotHeroic(this.abilityScores)) {
-      this.abilityScores = this.rollStats(this.requiredScores);
+      this.abilityScores = this.rollStats(CONSTANTS.REQUIRED_STATS);
     }
   }
 
@@ -70,18 +63,18 @@ export class Character extends React.Component<{}, void> {
   // 2 scores 14 or higher
   // total score is 70 or higher
   private isNotHeroic(abilityScores: Array<AbilityScore>): boolean {
-
-    let statsAboveThreshold: number = 0;
     let combinedTotal: number = 0;
+    let statsAboveThreshold: number = 0;
 
     abilityScores.map(stat => {
       combinedTotal += stat.score;
-      if (stat.score > 13) {
+      if (stat.score >= CONSTANTS.REQUIRED_STATS_THRESHOLD) {
         ++statsAboveThreshold;
       }
     });
 
-    if (combinedTotal >= 70 && statsAboveThreshold > 1) {
+    if (combinedTotal >= CONSTANTS.REQUIRED_STAT_TOTAL && 
+        statsAboveThreshold >= CONSTANTS.REQUIRED_STATS_ABOVE_THRESHOLD) {
       return false;
     }
     return true;
