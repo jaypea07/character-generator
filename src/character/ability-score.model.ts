@@ -13,7 +13,7 @@ export class AbilityScore {
     let modifier = Math.floor((score - 10) / 2);
     let formattedString;
     
-    if (modifier < 0) {
+    if (modifier <= 0) {
       formattedString = modifier.toString();
     } else {
       formattedString = '+' + modifier;
