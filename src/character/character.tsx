@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CONSTANTS } from '../constants';
+import { CONSTANTS } from '../core/constants';
 import { AbilityScore } from './ability-score.model';
 
 export class Character extends React.Component<{}, void> {
