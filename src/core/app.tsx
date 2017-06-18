@@ -9,6 +9,11 @@ export interface AppState {
 }
 
 class App extends React.Component<{}, AppState> {
+
+  constructor() {
+    super();
+    this.createNewCharacter = this.createNewCharacter.bind(this);
+  }
   
   componentWillMount() {
     this.createNewCharacter();
@@ -20,7 +25,7 @@ class App extends React.Component<{}, AppState> {
         <h1>Dungeons &amp; Dragons Character Generator</h1>
         <h2>I'm going to roll a...</h2>
         <Character stats={this.state.abilityScores} />
-        <button onClick={this.createNewCharacter.bind(this)}>That's dumb. Roll again!</button>
+        <button onClick={this.createNewCharacter}>That's dumb. Roll again!</button>
       </section>
     );
   }
