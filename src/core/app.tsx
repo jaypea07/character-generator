@@ -19,7 +19,7 @@ class App extends React.Component<{}, AppState> {
     this.createNewCharacter();
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <section className="container">
         <h1>Dungeons &amp; Dragons Character Generator</h1>
